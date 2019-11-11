@@ -20,6 +20,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Providers
 import { AuthProvider } from '../providers/auth';
 import { FirebaseProvider } from '../providers/firebase';
+import { watsonConversation } from '../services/watsonServices/watsonConversation.service';
+
+// Watson Dependencies
+import { HttpModule } from '@angular/http';
 
 // Plugins
 import { IonicStorageModule } from '@ionic/storage';
@@ -35,13 +39,15 @@ import { IonicStorageModule } from '@ionic/storage';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpModule
   ],
   providers: [
     AuthProvider,
     FirebaseProvider,
     StatusBar,
     SplashScreen,
+    watsonConversation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
